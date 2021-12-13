@@ -14,11 +14,11 @@ A pre-built database is readily available in this repo to use if preferred.
 
 ##### Get the API running:
 
-Clone this repo.
-Run `npm install` in the terminal from the root of the project.
-Run `nodemon start.js` in the terminal from the root of the project.
-The API should now be running on `localhost:1337`.
-Use any of the routes detailed below to test and use the API. The Postman App is very useful for experimenting with API endpoints.
+- Clone this repo.
+- Run `npm install` in the terminal from the root of the project.
+- Run `nodemon start.js` in the terminal from the root of the project.
+- The API should now be running on `localhost:1337`.
+- Use any of the routes detailed below to test and use the API. The Postman App is very useful for experimenting with API endpoints.
 
 ##### Running the Tests
 
@@ -77,7 +77,7 @@ Returns JSON data on all products in DB
   'data': []
   }
   ```
-  - ##### Sample Call
+- ##### Sample Call
   ```
     fetch('/products') 
     .then((data)=> data.json)
@@ -102,10 +102,10 @@ Returns JSON data on all products in DB
   e.g. `{ 'product-name': 'Nuclear Warhead', 'price': 1000000000.00, 'stock-quantity': 50, 'sku': 'NUC-1' }`
   
   ##### Required fields:
-  'product-name': The name of product (maximum string of 50 characters)
-  'price': Price of product in £ (maximum float of (13,2) digits)
-  'stock-quantity': Available stock in units (MySQL smallint: maximum value of 65,535)
-  'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
+  - 'product-name': The name of product (maximum string of 50 characters)
+  - 'price': Price of product in £ (maximum float of (13,2) digits)
+  - 'stock-quantity': Available stock in units (MySQL smallint: maximum value of 65,535)
+  - 'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
 
 - ##### Success Response
   ```
@@ -170,13 +170,13 @@ Returns JSON data on all products in DB
   ##### Editing multiple fields
   e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stock-quantity': 100 }`
   
-  'product-name': The name of product (maximum string of 50 characters)
-  'price': Price of product in £ (maximum float of (13,2) digits)
-  'stock-quantity': Available stock in units (MySQL smallint: maximum value of 65,535)
+  - 'product-name': The name of product (maximum string of 50 characters)
+  - 'price': Price of product in £ (maximum float of (13,2) digits)
+  - 'stock-quantity': Available stock in units (MySQL smallint: maximum value of 65,535)
   ##### Required fields:
-  'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
+  - 'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
   
-  - ##### Success Response
+- ##### Success Response
   ```
   {
   'success': true,
@@ -265,7 +265,7 @@ Returns JSON data on all products in DB
   }
   ```
   
-  - ##### Sample Call
+- ##### Sample Call
   ```
   fetch('/products',
     {
