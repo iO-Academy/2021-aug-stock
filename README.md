@@ -99,11 +99,13 @@ Returns JSON data on all products in DB
   None
 
 - ##### Data Params
-  { 'product-name': 'Nuclear Warhead', 'price': 1000000000.00, 'stock-quantity': 50 }
-
+  e.g. `{ 'product-name': 'Nuclear Warhead', 'price': 1000000000.00, 'stock-quantity': 50, 'sku': 'NUC-1' }`
+  
+  ##### Required fields:
   'product-name': The name of product (maximum string of 50 characters)
   'price': Price of product in £ (maximum float of (13,2) digits)
   'stock-quantity': Available stock in units (MySQL smallint: maximum value of 65,535)
+  'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
 
 - ##### Success Response
   ```
@@ -170,7 +172,9 @@ Returns JSON data on all products in DB
   
   'product-name': The name of product (maximum string of 50 characters)
   'price': Price of product in £ (maximum float of (13,2) digits)
-  'stock-quantity': Available stock in units (MySQL smallint: anything from -32,768 to 32,767)
+  'stock-quantity': Available stock in units (MySQL smallint: maximum value of 65,535)
+  ##### Required fields:
+  'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
   
   - ##### Success Response
   ```
