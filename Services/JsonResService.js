@@ -3,7 +3,7 @@ let response = (data, success = true, message = '', status = 200) => {
         "data": data,
         "success": success,
         "message": message,
-        "status": status
+        "status": status,
     }
 }
 
