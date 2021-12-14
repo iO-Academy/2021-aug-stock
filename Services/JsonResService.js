@@ -1,9 +1,9 @@
-let response = (data, success = true, message = '', status = 200) => {
+let response = (success, message, status, data) => {
     return {
-        "data": data,
         "success": success,
         "message": message,
         "status": status,
+        "data": data
     }
 }
 

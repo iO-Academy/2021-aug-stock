@@ -20,6 +20,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "promise-mysql": "^5.0.4",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "uniqid": "^5.4.0"
   }
 }

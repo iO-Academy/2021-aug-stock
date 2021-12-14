@@ -8,20 +8,25 @@ let ProductController = {
     getAllProducts: async (req, res) => {
         let connection = await dbConnection()
         let result = await ProductService.getAllProducts(connection)
-        res.json(JsonResService(result))
+        res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
     },
 
+
     addProduct: async (req, res) => {
-        let productName = req.body.productName
-        let price = parseFloat(req.body.price)
-        let stockQuantity = parseFloat(req.body.stockQuantity)
+        let productToAdd = {
+            productName: req.body.productName,
+            price: req.body.price,
+            stockQuantity: parseFloat(req.body.stockQuantity)
+        }
+        let {productName, price, stockQuantity} = productToAdd
         let sanitisedProductName = sanitise.sanitiseString(productName)
         if (validateProduct.validateProductName(sanitisedProductName) && validateProduct.validatePrice(price) && validateProduct.validateStockQuantity(stockQuantity)) {
             let connection = await dbConnection()
-            let result = await ProductService.addProduct(connection, sanitisedProductName, price, 1)
-            res.json(JsonResService(result))
+            let sku = await ProductService.generateSku(sanitisedProductName, connection)
+            await ProductService.addProduct(connection, sanitisedProductName, price, stockQuantity, sku)
+            res.json(JsonResService(true, 'successfully added product data to database', 200, []))
         } else {
-            res.json(JsonResService([], false, 'error: invalid input - no product added to database', 400))
+            res.json(JsonResService(false,  'error: invalid input - no product added to database', 400, []))
         }
     }
 }

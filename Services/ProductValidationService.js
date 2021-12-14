@@ -9,7 +9,8 @@ const ProductValidationService = {
     },
 
     validatePrice: (price) => {
-        if (Number.isFinite(price) === true && price <= 99999999999.99) {
+        const regex = /^[0-9]+$/;
+        if (regex.test(price) === true && price <= 99999999999.99 && price > 0) {
             return true
         } else {
             return false
@@ -17,7 +18,7 @@ const ProductValidationService = {
     },
 
     validateStockQuantity: (stockQuantity) => {
-        if (Number.isInteger(stockQuantity) === true && stockQuantity <= 65535) {
+        if (Number.isInteger(stockQuantity) === true && stockQuantity <= 65535 && stockQuantity >= 0) {
             return true
         } else {
             return false
