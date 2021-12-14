@@ -1,0 +1,24 @@
+{
+  "name": "2021-aug-stock",
+  "version": "1.0.0",
+  "description": "project template repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iO-Academy/2021-aug-stock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iO-Academy/2021-aug-stock/issues"
+  },
+  "homepage": "https://github.com/iO-Academy/2021-aug-stock#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "promise-mysql": "^5.0.4"
+  }
+}
