@@ -18,6 +18,7 @@
   "homepage": "https://github.com/iO-Academy/2021-aug-stock#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "promise-mysql": "^5.0.4"
   }
 }
