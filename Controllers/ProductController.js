@@ -4,10 +4,9 @@ const ProductService = require("../Services/ProductService")
 
 let ProductController = {
     getAllProducts: async (req, res) => {
-        connToDb(async (db) => {
-            let result = await ProductService.getAllProducts(db)
-            res.json(JsonResService(result))
-        })
+        let connection = await dbConnection()
+        let result = await ProductService.getAllProducts(connection)
+        res.json(JsonResService(result))
     }
 }
 

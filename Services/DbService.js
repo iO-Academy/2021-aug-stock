@@ -1,12 +1,12 @@
 const sql = require("promise-mysql")
 
-function connection() {
-    let db = sql.createConnection({
+const connection = async () => {
+    let connection = await sql.createConnection({
         user: 'root',
         password: 'password',
         database: 'blackMarket'
     })
-    return db
+    return connection
 }
 
 module.exports = connection

@@ -1,10 +1,7 @@
-// const connection = require("../Services/DbService");
-
 const ProductService = {
-    getAllProducts: async (db) => {
-        const connection = db
+    getAllProducts: async (connection) => {
         let result = await connection.query('SELECT * FROM `products`;')
-        result.json(result)
+        return result
     }
 }
 
