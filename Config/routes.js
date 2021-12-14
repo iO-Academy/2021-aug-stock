@@ -1,8 +1,8 @@
 const ProductController = require ('../Controllers/ProductController')
 
 function routes(app) {
-    app.get('/',ProductController.getAllProducts)
-    app.post('/',ProductController.addProduct)
+    app.get('/products',ProductController.getAllProducts)
+    app.post('/products',ProductController.addProduct)
 }
 
 module.exports = routes

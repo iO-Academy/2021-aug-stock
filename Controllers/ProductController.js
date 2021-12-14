@@ -14,8 +14,9 @@ let ProductController = {
             price: req.body.price,
             stockQuantity: req.body.stockQuantity
         }
+
         let connection = await dbConnection()
-        let sku = await ProductService.generateSku(productToAdd.productName)
+        let sku = await ProductService.generateSku(productToAdd.productName, connection)
         let result = await ProductService.addProduct(connection, productToAdd, sku)
         res.json(JsonResService(result))
     }

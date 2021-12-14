@@ -1,3 +1,5 @@
+const UniqId = require('uniqid')
+
 const ProductService = {
     getAllProducts: async (connection) => {
         let result = await connection.query('SELECT `id`, `product-name`, `price`, `stock-quantity`, `sku` FROM `products`;')
@@ -5,12 +7,12 @@ const ProductService = {
     },
     addProduct: async (connection, productToAdd, sku) => {
         let {productName, price, stockQuantity} = productToAdd
+        // let sku = ProductService.generateSku(productName, connection)
         await connection.query("INSERT INTO `products` (`product-name`, `price`, `stock-quantity`, `sku`) VALUES ('" + productName + "','" + price + "','" + stockQuantity + "','" + sku + "');")
     },
-    generateSku: async (productName) => {
-        let foo = productName.substr(0, 3).toUpperCase()
-        let number = Math.floor(Math.random() * (1000 - 1 + 1) + 1)
-        let sku = foo + '-' + number
+    generateSku: async (productName, connection) => {
+        let prefix = productName.substr(0, 3) + '-'
+        let sku = UniqId(prefix).toUpperCase()
         return sku
     }
 }
