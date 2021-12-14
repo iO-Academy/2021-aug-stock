@@ -21,7 +21,7 @@ let ProductController = {
             let result = await ProductService.addProduct(connection, sanitisedProductName, price, 1)
             res.json(JsonResService(result))
         } else {
-            res.json(JsonResService([], false, 'ya done nutting good', 400))
+            res.json(JsonResService([], false, 'error: invalid input - no product added to database', 400))
         }
     }
 }
