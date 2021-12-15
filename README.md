@@ -105,7 +105,7 @@ Returns JSON data on all products in DB
   None
 
 - ##### Data Params
-  e.g. `{ 'product-name': 'Nuclear Warhead', 'price': 1000000000.00, 'stock-quantity': 50, 'sku': 'NUC-1' }`
+  e.g. `{ 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-1' }`
   
   ##### Required fields:
   - 'product-name': The name of product (maximum string of 50 characters)
@@ -172,9 +172,9 @@ Returns JSON data on all products in DB
   
 - ##### Data Params
   ##### Editing 1 field:
-  e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out' }`
+  e.g. `{ 'sku': 'NUC-1', 'productName': 'Nuclear Warhead - Pimped Out' }`
   ##### Editing multiple fields:
-  e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stock-quantity': 100 }`
+  e.g. `{ 'sku': 'NUC-1', 'productName': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stockQuantity': 100 }`
   
   - 'product-name': The name of product (maximum string of 50 characters)
   - 'price': Price of product in £ (maximum float of (13,2) digits)
