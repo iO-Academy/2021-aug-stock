@@ -9,7 +9,11 @@ You must have Node installed on your machine.
 You must have a MySQL database named `blackMarket` and a table named `products`.
 
 The 'products' table must follow this structure:
-'id': `int`, 'product-name': `varchar(50)`, 'price': `decimal(13,2)`, 'stock-quantity': `smallint(65,535)`, 'sku': `varchar(10)`
+'id': `int`
+'product-name': `varchar(50)`
+'price': `decimal(13,2)`
+'stock-quantity': `smallint(65,535)`
+'sku': `varchar(10)`
 A pre-built database is readily available in this repo to use if preferred.
 
 ##### Get the API running:
