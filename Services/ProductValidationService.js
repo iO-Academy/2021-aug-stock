@@ -1,3 +1,4 @@
+const isNumber = require('is-number')
 
 const ProductValidationService = {
     validateProductName: (productName) => {
@@ -9,19 +10,14 @@ const ProductValidationService = {
     },
 
     validatePrice: (price) => {
-        const regex = /^[0-9]+$/;
-        if (regex.test(price) === true && price <= 99999999999.99 && price > 0) {
+        if (isNumber(price) && price <= 99999999999.99 && price > 0) {
             return true
-        } else {
-            return false
         }
     },
 
     validateStockQuantity: (stockQuantity) => {
-        if (Number.isInteger(stockQuantity) === true && stockQuantity <= 65535 && stockQuantity >= 0) {
+        if (Number.isInteger(stockQuantity) && stockQuantity <= 65535 && stockQuantity >= 0) {
             return true
-        } else {
-            return false
         }
     }
 }
