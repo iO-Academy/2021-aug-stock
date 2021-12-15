@@ -34,19 +34,39 @@ let ProductController = {
         let productToEdit = {
             productName: req.body.productName,
             price: req.body.price,
-            stockQuantity: parseFloat(req.body.stockQuantity),
+            stockQuantity: req.body.stockQuantity,
             sku: req.body.sku
         }
+        let productCheck
+        let priceCheck
+        let stockQuantityCheck
         let {productName, price, stockQuantity, sku} = productToEdit
         let sanitisedProductName = sanitise.sanitiseString(productName)
+        if (sanitisedProductName === undefined || validateProduct.validateProductName(sanitisedProductName)) {
+            productCheck = true
+        } else {
+            productCheck = false
+        }
 
-        // if (validateProduct.validateProductName(sanitisedProductName) && validateProduct.validatePrice(price) && validateProduct.validateStockQuantity(stockQuantity)) {
+        if (price === undefined || validateProduct.validatePrice(price)) {
+            priceCheck = true
+        } else {
+            priceCheck = false
+        }
+
+        if (stockQuantityCheck === undefined || validateProduct.validateStockQuantity(parseFloat(stockQuantity))) {
+            stockQuantityCheck = true
+        } else {
+            stockQuantityCheck = false
+        }
+
+        if (productCheck === true && priceCheck === true && stockQuantityCheck === true) {
             let connection = await dbConnection()
-            await ProductService.editProduct(connection, sanitisedProductName, price, stockQuantity, sku)
+            await ProductService.editProduct(connection, sanitisedProductName, price, parseFloat(stockQuantity), sku)
             res.json(JsonResService(true, 'successfully edited product data in database', 200, []))
-        // } else {
-        //     res.json(JsonResService(false,  'error: invalid input - no product edited in database', 400, []))
-        // }
+        } else {
+            res.json(JsonResService(false,  'error: invalid input - no product edited in database', 400, []))
+        }
     }
 }
 
