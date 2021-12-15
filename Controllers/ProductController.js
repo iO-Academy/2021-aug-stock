@@ -28,6 +28,25 @@ let ProductController = {
         } else {
             res.json(JsonResService(false,  'error: invalid input - no product added to database', 400, []))
         }
+    },
+
+    editProduct: async (req, res) => {
+        let productToEdit = {
+            productName: req.body.productName,
+            price: req.body.price,
+            stockQuantity: parseFloat(req.body.stockQuantity),
+            sku: req.body.sku
+        }
+        let {productName, price, stockQuantity, sku} = productToEdit
+        let sanitisedProductName = sanitise.sanitiseString(productName)
+
+        // if (validateProduct.validateProductName(sanitisedProductName) && validateProduct.validatePrice(price) && validateProduct.validateStockQuantity(stockQuantity)) {
+            let connection = await dbConnection()
+            await ProductService.editProduct(connection, sanitisedProductName, price, stockQuantity, sku)
+            res.json(JsonResService(true, 'successfully edited product data in database', 200, []))
+        // } else {
+        //     res.json(JsonResService(false,  'error: invalid input - no product edited in database', 400, []))
+        // }
     }
 }
 

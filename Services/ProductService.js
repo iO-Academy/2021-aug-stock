@@ -13,7 +13,21 @@ const ProductService = {
         let prefix = productName.substr(0, 3) + '-'
         let sku = UniqId(prefix).toUpperCase()
         return sku
+    },
+    editProduct: async (connection, sanitisedProductName, price, stockQuantity, sku) => {
+        if(sanitisedProductName !== undefined) {
+            await connection.query("UPDATE `products` SET `product-name` = '" + sanitisedProductName + "' WHERE `sku` = '" + sku + "';")
+        }
+        if(price !== undefined) {
+            await connection.query("UPDATE `products` SET `price` = '" + price + "' WHERE `sku` = '" + sku + "';")
+        }
+        if(!isNaN(stockQuantity)) {
+            await connection.query("UPDATE `products` SET `stock-quantity` = '" + stockQuantity + "' WHERE `sku` = '" + sku + "';")
+        }
     }
 }
+
+
+
 
 module.exports = ProductService
