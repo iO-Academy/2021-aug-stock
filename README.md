@@ -92,6 +92,61 @@ Returns JSON data on all products in DB
     })
     ```
 
+#### Retrieve Single Product
+Returns JSON data for one product in DB
+
+- ##### URL
+  '/products/:sku'
+
+- ##### Method
+  `GET`
+
+- ##### URL Params
+  ##### Required:
+- 'sku': Stock Keeping Unit - unique ID for the product.
+
+- ##### Data Params
+  None
+
+- ##### Success Response
+  ```
+  {
+  'success': true,
+  'message': 'successfully retrieved all product data',
+  'status': 200,
+  data: [
+            { 'id': 1, 'product-name': 'Nuclear Warhead', 'price': 1000000000.00, 'stock-quantity': 50, 'sku': 'NUC-1', 'deleted': 0}
+        ]
+  }
+   ``` 
+  
+- ##### Error Response
+  ```
+  {
+  'success': false,
+  'message': 'error: can't connect to database',
+  'status': 404,
+  'data': []
+  }
+  ```
+  OR
+  ```
+  {
+  'success': false,
+  'message': 'error: no data to retrieve from database',
+  'status': 204,
+  'data': []
+  }
+  ```
+- ##### Sample Call
+  ```
+    fetch('/products') 
+    .then((data)=> data.json)
+    .then((data)=> {
+        console.log(data)
+    })
+    ```
+
 #### Add A Product
 
 - ##### URL
