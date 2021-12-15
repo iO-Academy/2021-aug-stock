@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: blackmarket
-# Generation Time: 2021-12-15 11:35:12 +0000
+# Generation Time: 2021-12-15 15:13:33 +0000
 # ************************************************************
 
 
@@ -30,8 +30,8 @@ CREATE TABLE `products` (
   `product-name` varchar(50) NOT NULL DEFAULT '',
   `price` decimal(13,2) unsigned NOT NULL DEFAULT '0.00',
   `stock-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `sku` varchar(22) NOT NULL DEFAULT '',
-  `deleted` tinyint(1) DEFAULT '0',
+  `sku` varchar(30) NOT NULL DEFAULT '',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku` (`sku`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
