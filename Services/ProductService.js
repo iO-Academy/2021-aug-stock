@@ -16,9 +16,24 @@ const ProductService = {
         return sku
     },
 
+    editProduct: async (connection, sanitisedProductName, price, stockQuantity, sku) => {
+        if(sanitisedProductName !== undefined) {
+            await connection.query("UPDATE `products` SET `product-name` = '" + sanitisedProductName + "' WHERE `sku` = '" + sku + "';")
+        }
+        if(price !== undefined) {
+            await connection.query("UPDATE `products` SET `price` = '" + price + "' WHERE `sku` = '" + sku + "';")
+        }
+        if(!isNaN(stockQuantity)) {
+            await connection.query("UPDATE `products` SET `stock-quantity` = '" + stockQuantity + "' WHERE `sku` = '" + sku + "';")
+        }
+    },
+
     deleteProduct: async (connection, sku) => {
         await connection.query("UPDATE `products` SET `deleted` = 1 WHERE `sku` = '" + sku + "';")
     }
 }
+
+
+
 
 module.exports = ProductService

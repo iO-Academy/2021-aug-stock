@@ -29,6 +29,52 @@ let ProductController = {
         }
     },
 
+    editProduct: async (req, res) => {
+        let productToEdit = {
+            productName: req.body.productName,
+            price: req.body.price,
+            stockQuantity: req.body.stockQuantity,
+            sku: req.body.sku
+        }
+        let {productName, price, stockQuantity, sku} = productToEdit
+        if (validateProduct.validateSku(sku)) {
+            let connection = await dbConnection()
+            let result = await connection.query("SELECT `sku` FROM `products` WHERE `sku` = '" + sku + "';")
+            if (result.length) {
+                let productCheck
+                let priceCheck
+                let stockQuantityCheck
+                let sanitisedProductName = sanitise.sanitiseString(productName)
+                if (sanitisedProductName === undefined || validateProduct.validateProductName(sanitisedProductName)) {
+                    productCheck = true
+                } else {
+                    productCheck = false
+                }
+                if (price === undefined || validateProduct.validatePrice(price)) {
+                    priceCheck = true
+                } else {
+                    priceCheck = false
+                }
+                if (stockQuantityCheck === undefined || validateProduct.validateStockQuantity(parseFloat(stockQuantity))) {
+                    stockQuantityCheck = true
+                } else {
+                    stockQuantityCheck = false
+                }
+                if (productCheck === true && priceCheck === true && stockQuantityCheck === true) {
+                    let connection = await dbConnection()
+                    await ProductService.editProduct(connection, sanitisedProductName, price, parseFloat(stockQuantity), sku)
+                    res.json(JsonResService(true, 'successfully edited product data in database', 200, []))
+                } else {
+                    res.json(JsonResService(false,  'error: invalid input - no product edited in database', 400, []))
+                }
+            } else {
+                res.json(JsonResService(false,  'error: SKU not found in database - no product edited in database', 404, []))
+            }
+        } else {
+            res.json(JsonResService(false,  'error: invalid SKU - no product edited in database', 400, []))
+        }
+    },
+
     deleteProduct: async (req, res) => {
         let sku = req.body.sku
         if (validateProduct.validateSku(sku)) {
@@ -43,7 +89,7 @@ let ProductController = {
         } else {
             res.json(JsonResService(false,  'error: invalid SKU - no product deleted in database', 400, []))
         }
-    },
+    }
 }
 
 module.exports = ProductController
