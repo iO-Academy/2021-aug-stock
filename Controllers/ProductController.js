@@ -28,7 +28,18 @@ let ProductController = {
         } else {
             res.json(JsonResService(false,  'error: invalid input - no product added to database', 400, []))
         }
-    }
+    },
+
+    deleteProduct: async (req, res) => {
+        let sku = req.body.sku
+        if (validateProduct.validateSku(sku)) {
+            let connection = await dbConnection()
+            await ProductService.deleteProduct(connection, sku)
+            res.json(JsonResService(true, 'successfully deleted product in database', 200, []))
+        } else {
+            res.json(JsonResService(false,  'error: invalid SKU - no product deleted in database', 400, []))
+        }
+    },
 }
 
 module.exports = ProductController
