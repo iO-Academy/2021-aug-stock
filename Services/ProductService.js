@@ -9,7 +9,7 @@ const ProductService = {
     addProduct: async (connection, sanitisedProductName, price, stockQuantity, sku) => {
         await connection.query("INSERT INTO `products` (`product-name`, `price`, `stock-quantity`, `sku`) VALUES ('" + sanitisedProductName + "','" + price + "','" + stockQuantity + "','" + sku + "');")
     },
-    generateSku: async (productName, connection) => {
+    generateSku: async (productName) => {
         let prefix = productName.substr(0, 3) + '-'
         let sku = UniqId(prefix).toUpperCase()
         return sku
