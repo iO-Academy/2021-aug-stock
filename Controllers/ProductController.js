@@ -28,6 +28,12 @@ let ProductController = {
         } else {
             res.json(JsonResService(false,  'error: invalid input - no product added to database', 400, []))
         }
+    },
+
+    deleteProduct: async (req, res) => {
+        let sku = req.body.sku
+
+
     }
 }
 
