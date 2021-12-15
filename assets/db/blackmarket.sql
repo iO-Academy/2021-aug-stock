@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
-# Database: blackMarket
-# Generation Time: 2021-12-13 16:48:10 +0000
+# Database: blackmarket
+# Generation Time: 2021-12-15 09:32:47 +0000
 # ************************************************************
 
 
@@ -30,7 +30,7 @@ CREATE TABLE `products` (
   `product-name` varchar(50) NOT NULL DEFAULT '',
   `price` decimal(13,2) unsigned NOT NULL DEFAULT '0.00',
   `stock-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `sku` varchar(10) NOT NULL DEFAULT '',
+  `sku` varchar(22) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku` (`sku`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
