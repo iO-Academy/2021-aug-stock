@@ -26,7 +26,7 @@ const ProductValidationService = {
     },
 
     validateSku: (sku) => {
-        const regex = /^[A-Z]{3}-[0-9A-Z]{18}$/
+        const regex = /^[A-Z]{3}-[0-9A-Z]{14,26}$/
         if (regex.test(sku)) {
             return true
         } else {
