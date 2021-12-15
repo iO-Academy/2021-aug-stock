@@ -12,12 +12,16 @@ const ProductValidationService = {
     validatePrice: (price) => {
         if (isNumber(price) && price <= 99999999999.99 && price > 0) {
             return true
+        } else {
+            return false
         }
     },
 
     validateStockQuantity: (stockQuantity) => {
         if (Number.isInteger(stockQuantity) && stockQuantity <= 65535 && stockQuantity >= 0) {
             return true
+        } else {
+            return false
         }
     }
 }
