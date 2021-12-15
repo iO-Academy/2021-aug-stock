@@ -5,10 +5,9 @@ const ProductService = {
         let result = await connection.query('SELECT `id`, `product-name`, `price`, `stock-quantity`, `sku` FROM `products`;')
         return result
     },
-    addProduct: async (connection, productToAdd, sku) => {
-        let {productName, price, stockQuantity} = productToAdd
-        // let sku = ProductService.generateSku(productName, connection)
-        await connection.query("INSERT INTO `products` (`product-name`, `price`, `stock-quantity`, `sku`) VALUES ('" + productName + "','" + price + "','" + stockQuantity + "','" + sku + "');")
+
+    addProduct: async (connection, sanitisedProductName, price, stockQuantity, sku) => {
+        await connection.query("INSERT INTO `products` (`product-name`, `price`, `stock-quantity`, `sku`) VALUES ('" + sanitisedProductName + "','" + price + "','" + stockQuantity + "','" + sku + "');")
     },
     generateSku: async (productName, connection) => {
         let prefix = productName.substr(0, 3) + '-'
