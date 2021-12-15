@@ -53,3 +53,24 @@ describe('validateStockQuantity', () => {
         expect(PVS.validateStockQuantity(true)).toBe(false)
     })
 })
+
+describe('validateSku', () => {
+    test('testSuccessValidSku', () => {
+        expect(PVS.validateSku('BUN-14HL64MF95NE40NGL8')).toBe(true)
+    })
+    test('testFailureInvalidSku', () => {
+        expect(PVS.validateSku('bun-14HL64MF95NE40NGL8')).toBe(false)
+    })
+    test('testFailureInvalidSku', () => {
+        expect(PVS.validateSku('BUN-14HL64MF95NE40NGL')).toBe(false)
+    })
+    test('testFailureInvalidSku', () => {
+        expect(PVS.validateSku('BUN-14HL64MF95NE40NGL88')).toBe(false)
+    })
+    test('testFailureInvalidSku', () => {
+        expect(PVS.validateSku('<h1>14HL64MF95NE40</h1>')).toBe(false)
+    })
+    test('testFailureInvalidSku', () => {
+        expect(PVS.validateSku([])).toBe(false)
+    })
+})
