@@ -167,7 +167,7 @@ Returns JSON data on all products in DB
 - ##### Data Params
   ##### Editing 1 field:
   e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out' }`
-  ##### Editing multiple fields
+  ##### Editing multiple fields:
   e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stock-quantity': 100 }`
   
   - 'product-name': The name of product (maximum string of 50 characters)
@@ -221,7 +221,7 @@ Returns JSON data on all products in DB
   })
   ```
   
-  #### Delete A Product
+#### Delete A Product
   
 - ##### URL
   '/products'
