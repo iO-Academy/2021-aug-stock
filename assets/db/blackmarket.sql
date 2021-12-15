@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: blackmarket
-# Generation Time: 2021-12-15 09:32:47 +0000
+# Generation Time: 2021-12-15 15:13:33 +0000
 # ************************************************************
 
 
@@ -30,7 +30,8 @@ CREATE TABLE `products` (
   `product-name` varchar(50) NOT NULL DEFAULT '',
   `price` decimal(13,2) unsigned NOT NULL DEFAULT '0.00',
   `stock-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `sku` varchar(22) NOT NULL DEFAULT '',
+  `sku` varchar(30) NOT NULL DEFAULT '',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku` (`sku`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -38,14 +39,14 @@ CREATE TABLE `products` (
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 
-INSERT INTO `products` (`id`, `product-name`, `price`, `stock-quantity`, `sku`)
+INSERT INTO `products` (`id`, `product-name`, `price`, `stock-quantity`, `sku`, `deleted`)
 VALUES
-	(1,'Nuclear Warhead',1000000000.00,50,'NUC-1'),
-	(2,'Druggy Bag Surprise',1000.00,500,'DRU-2'),
-	(3,'Liver - Human',550000.00,15,'LIV-3'),
-	(4,'Siberian Tiger',5000000.00,2,'TIG-4'),
-	(5,'Thermite - Bucket',20000000.00,3,'THE-5'),
-	(6,'Coronavirus - Yoghurt Pot',10.00,10000,'COR-6');
+	(1,'Nuclear Warhead',1000000000.00,50,'NUC-1',0),
+	(2,'Druggy Bag Surprise',1000.00,500,'DRU-2',0),
+	(3,'Liver - Human',550000.00,15,'LIV-3',0),
+	(4,'Siberian Tiger',5000000.00,2,'TIG-4',0),
+	(5,'Thermite - Bucket',20000000.00,3,'THE-5',0),
+	(6,'Coronavirus - Yoghurt Pot',10.00,10000,'COR-6',0);
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
