@@ -9,7 +9,13 @@ You must have Node installed on your machine.
 You must have a MySQL database named `blackMarket` and a table named `products`.
 
 The 'products' table must follow this structure:
-'id': `int`, 'product-name': `varchar(50)`, 'price': `decimal(13,2)`, 'stock-quantity': `smallint(65,535)`, 'sku': `varchar(10)`
+```
+'id': `int`
+'product-name': `varchar(50)`
+'price': `decimal(13,2)`
+'stock-quantity': `smallint(65,535)`
+'sku': `varchar(10)`
+```
 A pre-built database is readily available in this repo to use if preferred.
 
 ##### Get the API running:
@@ -167,7 +173,7 @@ Returns JSON data on all products in DB
 - ##### Data Params
   ##### Editing 1 field:
   e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out' }`
-  ##### Editing multiple fields
+  ##### Editing multiple fields:
   e.g. `{ 'sku': 'NUC-1', 'product-name': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stock-quantity': 100 }`
   
   - 'product-name': The name of product (maximum string of 50 characters)
@@ -221,7 +227,7 @@ Returns JSON data on all products in DB
   })
   ```
   
-  #### Delete A Product
+#### Delete A Product
   
 - ##### URL
   '/products'
