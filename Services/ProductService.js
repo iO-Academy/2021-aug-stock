@@ -6,6 +6,11 @@ const ProductService = {
         return result
     },
 
+    getSingleProduct: async (connection, sku) => {
+        let result = await connection.query("SELECT `id`, `product-name`, `price`, `stock-quantity`, `sku`, `deleted` FROM `products` WHERE `sku` = '" + sku + "' AND `deleted` = 0;")
+        return result
+    },
+
     addProduct: async (connection, sanitisedProductName, price, stockQuantity, sku) => {
         await connection.query("INSERT INTO `products` (`product-name`, `price`, `stock-quantity`, `sku`) VALUES ('" + sanitisedProductName + "','" + price + "','" + stockQuantity + "','" + sku + "');")
     },
