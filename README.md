@@ -112,7 +112,7 @@ Returns JSON data for one product in DB
   ```
   {
   'success': true,
-  'message': 'successfully retrieved all product data',
+  'message': 'successfully retrieved product data',
   'status': 200,
   data: [
             { 'id': 1, 'product-name': 'Nuclear Warhead', 'price': 1000000000.00, 'stock-quantity': 50, 'sku': 'NUC-1', 'deleted': 0}
@@ -124,7 +124,7 @@ Returns JSON data for one product in DB
   ```
   {
   'success': false,
-  'message': 'error: can't connect to database',
+  'message': 'error: SKU not found in database - no product retrieved',
   'status': 404,
   'data': []
   }
@@ -133,14 +133,14 @@ Returns JSON data for one product in DB
   ```
   {
   'success': false,
-  'message': 'error: no data to retrieve from database',
-  'status': 204,
+  'message': 'error: invalid SKU - no product retrieved from database',
+  'status': 400,
   'data': []
   }
   ```
 - ##### Sample Call
   ```
-    fetch('/products') 
+    fetch('/products/') 
     .then((data)=> data.json)
     .then((data)=> {
         console.log(data)
