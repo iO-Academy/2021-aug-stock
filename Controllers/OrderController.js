@@ -14,8 +14,8 @@ const OrderController = {
         let connection = await dbConnection()
         let validationResult = await OrderService.validateOrder(orderData, connection)
 
-        if (validationResult === false) {
-            res.json(JsonResService(false, 'error: invalid input', 400, []))
+        if (validationResult !== true) {
+            res.json(JsonResService(false, validationResult, 400, []))
         } else {
             //only happens if validation checks are passed
             let customerEmail = req.body.orderData.customerEmail
@@ -43,7 +43,7 @@ const OrderController = {
 
             //add the orderId, customerId, shippingAddress and postcode to the customer-orders table
             await OrderService.linkOrderToCustomer(connection, orderId, customerId, shippingData.shippingAddress, shippingData.shippingPostcode)
-            res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
+            res.json(JsonResService(true, 'successfully added order', 200, result))
         }
     }
 }
