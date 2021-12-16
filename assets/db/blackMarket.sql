@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: blackmarket
-# Generation Time: 2021-12-16 12:04:40 +0000
+# Generation Time: 2021-12-16 15:38:55 +0000
 # ************************************************************
 
 
@@ -27,8 +27,8 @@ DROP TABLE IF EXISTS `customers`;
 
 CREATE TABLE `customers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `customer-email` varchar(255) NOT NULL DEFAULT '',
-  `customer-id` int(11) DEFAULT NULL,
+  `customerEmail` varchar(255) NOT NULL DEFAULT '',
+  `customerId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -41,10 +41,10 @@ DROP TABLE IF EXISTS `customers-orders`;
 
 CREATE TABLE `customers-orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `customer-id` varchar(30) NOT NULL DEFAULT '',
-  `order-id` varchar(30) NOT NULL DEFAULT '',
-  `shipping-address` varchar(255) NOT NULL DEFAULT '',
-  `shipping-postcode` varchar(10) NOT NULL DEFAULT '',
+  `customerId` varchar(30) NOT NULL DEFAULT '',
+  `orderId` varchar(30) NOT NULL DEFAULT '',
+  `shippingAddress` varchar(255) NOT NULL DEFAULT '',
+  `shippingPostcode` varchar(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -57,10 +57,10 @@ DROP TABLE IF EXISTS `orders`;
 
 CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `order-id` varchar(30) NOT NULL DEFAULT '',
-  `product-sku` varchar(30) NOT NULL DEFAULT '',
-  `product-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `order-status` enum('Pending','Completed','Cancelled') NOT NULL DEFAULT 'Pending',
+  `orderId` varchar(30) NOT NULL DEFAULT '',
+  `productSku` varchar(30) NOT NULL DEFAULT '',
+  `productQuantity` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `orderStatus` enum('Pending','Completed','Cancelled') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -73,9 +73,9 @@ DROP TABLE IF EXISTS `products`;
 
 CREATE TABLE `products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `product-name` varchar(50) NOT NULL DEFAULT '',
+  `productName` varchar(50) NOT NULL DEFAULT '',
   `price` decimal(13,2) unsigned NOT NULL DEFAULT '0.00',
-  `stock-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `stockQuantity` smallint(5) unsigned NOT NULL DEFAULT '0',
   `sku` varchar(30) NOT NULL DEFAULT '',
   `deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -85,7 +85,7 @@ CREATE TABLE `products` (
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 
-INSERT INTO `products` (`id`, `product-name`, `price`, `stock-quantity`, `sku`, `deleted`)
+INSERT INTO `products` (`id`, `productName`, `price`, `stockQuantity`, `sku`, `deleted`)
 VALUES
 	(9,'Nuclear Warhead',1000000000.00,50,'NUC-BATS91RD6KX7REHS5',0),
 	(10,'Druggy Bag Surprise',1000.00,500,'DRU-BATS91RD6KX7RFFJF',0),

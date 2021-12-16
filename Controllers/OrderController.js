@@ -5,32 +5,38 @@ const JsonResService = require("../Services/JsonResService");
 const UniqId = require("uniqid");
 
 const OrderController = {
-    validateOrder: async (req, res) => {
+    addOrder: async (req, res) => {
+
+        //validate given data
         let productData = req.body.orderData.productData
         let connection = await dbConnection()
-        let result = await OrderService.validateOrderSkus(productData, connection)
+        let validationResult = await OrderService.validateOrderSkus(productData, connection)
 
-        if(result === false) {
+        if (validationResult === false) {
             res.json(JsonResService(false, 'error: invalid sku', 400, []))
         } else {
-            res.json(JsonResService(true, 'valid skus', 200, productData))
+            //only happens if validation checks are passed
+            let customerEmail = req.body.customerEmail
+            let result = await OrderService.checkCustomerExistence(connection, customerEmail)
+            let customerId
+            if (result.length) {
+                customerId = result[0].customerId
+            } else {
+                customerId = UniqId('CUS-').toUpperCase()
+                await OrderService.addCustomer(connection, customerEmail, customerId)
+            }
+
+            let orderId = UniqId('ORD-').toUpperCase()
+
+            //add the order to the orders table
+            productData.forEach((product) => {
+                OrderService.addProductToOrder(connection, orderId, product.productSku, product.productQuantity)
+            })
+
+            //add the orderId, customerId, shippingAddress and postcode to the customer-orders table
+            res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
         }
-    },
-    getCustomerId: async (req, res) => {
-        let customerEmail = req.body.customerEmail
-        let connection = await dbConnection()
-        let result = await OrderService.checkCustomerExistence(connection, customerEmail)
-        let customerId
-        if (result.length) {
-            customerId = result[0].customerId
-        } else {
-            customerId = UniqId('CUS-').toUpperCase()
-            await OrderService.addCustomer(connection, customerEmail, customerId)
-        }
-        res.json(JsonResService(true, 'successfully retrieved customer ID', 200, customerId))
     }
-
-
 }
 
 module.exports = OrderController
