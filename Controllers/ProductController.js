@@ -11,6 +11,21 @@ let ProductController = {
         res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
     },
 
+    getSingleProduct: async (req, res) => {
+        let sku = req.params.sku
+        if (validateProduct.validateSku(sku)) {
+            let connection = await dbConnection()
+            let result = await ProductService.getSingleProduct(connection, sku)
+            if (result.length) {
+                res.json(JsonResService(true, 'successfully retrieved product data', 200, result))
+            } else {
+                res.json(JsonResService(false,  'error: SKU not found in database - no product retrieved', 404, []))
+            }
+        } else {
+            res.json(JsonResService(false,  'error: invalid SKU - no product retrieved from database', 400, []))
+        }
+    },
+
     addProduct: async (req, res) => {
         let productToAdd = {
             productName: req.body.productName,
@@ -84,7 +99,7 @@ let ProductController = {
                 await ProductService.deleteProduct(connection, sku)
                 res.json(JsonResService(true, 'successfully deleted product in database', 200, []))
             } else {
-                res.json(JsonResService(false,  'error: SKU not found in database - no product deleted in database', 404, []))
+                res.json(JsonResService(false,  'error: SKU not found in database - no product deleted', 404, []))
             }
         } else {
             res.json(JsonResService(false,  'error: invalid SKU - no product deleted in database', 400, []))
