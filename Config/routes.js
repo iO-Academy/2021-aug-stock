@@ -8,7 +8,7 @@ function routes(app) {
     app.put('/products',ProductController.editProduct)
     app.delete('/products',ProductController.deleteProduct)
 
-    app.post('/orders',OrderController.getCustomerId)
+    app.post('/orders',OrderController.addOrder)
 }
 
 module.exports = routes
