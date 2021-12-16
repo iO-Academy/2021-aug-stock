@@ -4,7 +4,12 @@ const JsonResService = require("../Services/JsonResService");
 const UniqId = require("uniqid");
 
 const OrderController = {
-    getCustomerId: async (req, res) => {
+    addOrder: async (req, res) => {
+
+        //validate given data
+        let productData = req.body.productData
+
+        //only happens if validation checks are passed
         let customerEmail = req.body.customerEmail
         let connection = await dbConnection()
         let result = await OrderService.checkCustomerExistence(connection, customerEmail)
@@ -15,8 +20,19 @@ const OrderController = {
             customerId = UniqId('CUS-').toUpperCase()
             await OrderService.addCustomer(connection, customerEmail, customerId)
         }
-        res.json(JsonResService(true, 'successfully retrieved customer ID', 200, customerId))
+
+        let orderId = UniqId('ORD-').toUpperCase()
+
+        //add the order to the orders table
+        productData.forEach((product)=> {
+            OrderService.addProductToOrder(connection, orderId, product.productSku, product.productQuantity)
+        })
+
+        //add the orderId, customerId, shippingAddress and postcode to the customer-orders table
+        res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
     }
+
+
 
 
 }
