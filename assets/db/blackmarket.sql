@@ -1,13 +1,13 @@
 # ************************************************************
 # Sequel Pro SQL dump
-# Version 4541
+# Version 5446
 #
-# http://www.sequelpro.com/
+# https://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: blackmarket
-# Generation Time: 2021-12-15 15:13:33 +0000
+# Generation Time: 2021-12-16 09:11:41 +0000
 # ************************************************************
 
 
@@ -15,9 +15,22 @@
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+SET NAMES utf8mb4;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table orders
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `orders`;
+
+CREATE TABLE `orders` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 # Dump of table products
@@ -30,8 +43,8 @@ CREATE TABLE `products` (
   `product-name` varchar(50) NOT NULL DEFAULT '',
   `price` decimal(13,2) unsigned NOT NULL DEFAULT '0.00',
   `stock-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `sku` varchar(30) NOT NULL DEFAULT '',
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `sku` varchar(22) NOT NULL DEFAULT '',
+  `deleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku` (`sku`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -41,12 +54,12 @@ LOCK TABLES `products` WRITE;
 
 INSERT INTO `products` (`id`, `product-name`, `price`, `stock-quantity`, `sku`, `deleted`)
 VALUES
-	(1,'Nuclear Warhead',1000000000.00,50,'NUC-1',0),
-	(2,'Druggy Bag Surprise',1000.00,500,'DRU-2',0),
-	(3,'Liver - Human',550000.00,15,'LIV-3',0),
-	(4,'Siberian Tiger',5000000.00,2,'TIG-4',0),
-	(5,'Thermite - Bucket',20000000.00,3,'THE-5',0),
-	(6,'Coronavirus - Yoghurt Pot',10.00,10000,'COR-6',0);
+	(9,'Nuclear Warhead',1000000000.00,50,'NUC-BATS91RD6KX7REHS5',0),
+	(10,'Druggy Bag Surprise',1000.00,500,'DRU-BATS91RD6KX7RFFJF',0),
+	(11,'Liver - Human',550000.00,15,'LIV-BATS91RD6KX7RFNI3',0),
+	(12,'Siberian Tiger',5000000.00,50,'SIB-BATS91RD6KX7RFUV1',0),
+	(13,'Thermite - Bucket',20000000.00,3,'THE-BATS91RD6KX7RG2J3',0),
+	(14,'Coronavirus - Yoghurt Pot',10.00,10000,'COR-BATS91RD6KX7RG8ZC',0);
 
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
