@@ -10,6 +10,10 @@ const OrderService = {
 
     addProductToOrder: async (connection, orderId, productSku, productQuantity) => {
         await connection.query("INSERT INTO `orders` (`orderId`, `productSku`, `productQuantity`) VALUES ('" + orderId + "','" + productSku + "','" + productQuantity + "');")
+    },
+
+    linkOrderToCustomer: async (connection, orderId, customerId, shippingAddress, shippingPostcode) => {
+        await connection.query("INSERT INTO `customers-orders` (`orderId`, `customerId`, `shippingAddress`, `shippingPostcode`) VALUES ('" + orderId + "','" + customerId + "','" + shippingAddress + "','" + shippingPostcode + "');")
     }
 }
 

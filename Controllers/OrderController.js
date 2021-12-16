@@ -8,6 +8,7 @@ const OrderController = {
 
         //validate given data
         let productData = req.body.productData
+        let shippingData = req.body.shippingData
 
         //only happens if validation checks are passed
         let customerEmail = req.body.customerEmail
@@ -29,6 +30,7 @@ const OrderController = {
         })
 
         //add the orderId, customerId, shippingAddress and postcode to the customer-orders table
+        await OrderService.linkOrderToCustomer(connection, orderId, customerId, shippingData.shippingAddress, shippingData.shippingPostcode)
         res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
     }
 
