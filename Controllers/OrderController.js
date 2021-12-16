@@ -8,9 +8,9 @@ const OrderController = {
     addOrder: async (req, res) => {
 
         //validate given data
-        let productData = req.body.orderData.productData
+        let orderData = req.body.orderData
         let connection = await dbConnection()
-        let validationResult = await OrderService.validateOrder(productData, connection)
+        let validationResult = await OrderService.validateOrder(orderData, connection)
 
         if (validationResult === false) {
             res.json(JsonResService(false, 'error: invalid input', 400, []))
@@ -29,7 +29,7 @@ const OrderController = {
             let orderId = UniqId('ORD-').toUpperCase()
 
             //add the order to the orders table
-            productData.forEach((product) => {
+            orderData.productData.forEach((product) => {
                 OrderService.addProductToOrder(connection, orderId, product.productSku, product.productQuantity)
             })
 

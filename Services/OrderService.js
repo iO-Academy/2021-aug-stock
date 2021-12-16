@@ -3,7 +3,8 @@ const JsonResService = require("../Services/JsonResService");
 const validator = require('validator')
 
 const OrderService = {
-    validateOrder: async (productData, connection) => {
+    validateOrder: async (orderData, connection) => {
+        let productData = orderData.productData
         productData.forEach((product) => {
             if(ProductValidationService.validateSku(product.productSku) === true) {
                 return true
@@ -42,9 +43,14 @@ const OrderService = {
         })
         if(productData.includes('negative stock')) {
             return false
+        }
+        let email = orderData.customerEmail
+        if(validator.isEmail(email) === false) {
+            return false
         } else {
             return true
         }
+
     },
     checkCustomerExistence: async (connection, customerEmail) => {
         let result = await connection.query("SELECT `customerEmail`, `customerId` FROM `customers` WHERE `customerEmail` = '" + customerEmail + "';")
