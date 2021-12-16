@@ -10,10 +10,10 @@ const OrderController = {
         //validate given data
         let productData = req.body.orderData.productData
         let connection = await dbConnection()
-        let validationResult = await OrderService.validateOrderSkus(productData, connection)
+        let validationResult = await OrderService.validateOrder(productData, connection)
 
         if (validationResult === false) {
-            res.json(JsonResService(false, 'error: invalid sku', 400, []))
+            res.json(JsonResService(false, 'error: invalid input', 400, []))
         } else {
             //only happens if validation checks are passed
             let customerEmail = req.body.customerEmail
