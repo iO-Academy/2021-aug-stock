@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: blackmarket
-# Generation Time: 2021-12-16 10:14:09 +0000
+# Generation Time: 2021-12-16 11:58:35 +0000
 # ************************************************************
 
 
@@ -27,10 +27,24 @@ DROP TABLE IF EXISTS `customers`;
 
 CREATE TABLE `customers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `customer-address` varchar(255) NOT NULL DEFAULT '',
-  `customer-postcode` varchar(10) NOT NULL DEFAULT '',
   `customer-email` varchar(255) NOT NULL DEFAULT '',
   `customer-id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table customers-orders
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `customers-orders`;
+
+CREATE TABLE `customers-orders` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `customer-id` varchar(30) NOT NULL DEFAULT '',
+  `order-id` varchar(30) NOT NULL DEFAULT '',
+  `shipping-address` varchar(255) NOT NULL DEFAULT '',
+  `shipping-postcode` varchar(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -43,10 +57,10 @@ DROP TABLE IF EXISTS `orders`;
 
 CREATE TABLE `orders` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `order-number` varchar(30) NOT NULL DEFAULT '',
+  `order-id` varchar(30) NOT NULL DEFAULT '',
   `product-sku` varchar(30) NOT NULL DEFAULT '',
   `product-quantity` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `customer-id` int(11) NOT NULL,
+  `order-status` enum('Pending','Completed','Cancelled') NOT NULL DEFAULT 'Pending',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
