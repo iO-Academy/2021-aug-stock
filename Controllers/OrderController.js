@@ -43,7 +43,7 @@ const OrderController = {
 
             //add the orderId, customerId, shippingAddress and postcode to the customer-orders table
             await OrderService.linkOrderToCustomer(connection, orderId, customerId, shippingData.shippingAddress, shippingData.shippingPostcode)
-            res.json(JsonResService(true, 'successfully added order', 200, result))
+            res.json(JsonResService(true, 'Successfully added order', 200, result))
         }
     },
 
