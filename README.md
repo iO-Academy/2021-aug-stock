@@ -89,8 +89,7 @@ Returns JSON data on all products in DB
             { 'id': 3, 'productName': 'Liver - Human', 'price': 550000, 'stockQuantity': 50, 'sku': 'LIV-3' }
         ]
   }
-   ``` 
-
+   ```
 
 - ##### Sample Call
   ```
@@ -246,7 +245,7 @@ Returns JSON data for one product in DB
 
   - ##### Required fields:
   - 'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-BATS91RD6KX7REHS5`
-
+  
 - ##### Success Response
   ```
   {
