@@ -56,8 +56,11 @@ let ProductController = {
                 let productCheck
                 let priceCheck
                 let stockQuantityCheck
-                let sanitisedProductName = sanitise.sanitiseString(productName)
-                if (sanitisedProductName === undefined || validateProduct.validateProductName(sanitisedProductName)) {
+                let sanitisedProductName
+                if (productName !== undefined) {
+                    sanitisedProductName = sanitise.sanitiseString(productName)
+                }
+                if (productName === undefined || validateProduct.validateProductName(sanitisedProductName)) {
                     productCheck = true
                 } else {
                     productCheck = false
@@ -67,7 +70,7 @@ let ProductController = {
                 } else {
                     priceCheck = false
                 }
-                if (stockQuantityCheck === undefined || validateProduct.validateStockQuantity(parseFloat(stockQuantity))) {
+                if (stockQuantity === undefined || validateProduct.validateStockQuantity(parseFloat(stockQuantity))) {
                     stockQuantityCheck = true
                 } else {
                     stockQuantityCheck = false
