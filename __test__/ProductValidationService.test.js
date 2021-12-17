@@ -62,10 +62,7 @@ describe('validateSku', () => {
         expect(PVS.validateSku('bun-14HL64MF95NE40NGL8')).toBe(false)
     })
     test('testFailureInvalidSku', () => {
-        expect(PVS.validateSku('BUN-14HL64MF95NE40NGL')).toBe(false)
-    })
-    test('testFailureInvalidSku', () => {
-        expect(PVS.validateSku('BUN-14HL64MF95NE40NGL88')).toBe(false)
+        expect(PVS.validateSku('BUN-14HL64MF95NE40NGL8888888888888')).toBe(false)
     })
     test('testFailureInvalidSku', () => {
         expect(PVS.validateSku('<h1>14HL64MF95NE40</h1>')).toBe(false)
