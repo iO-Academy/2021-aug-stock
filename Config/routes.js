@@ -7,7 +7,10 @@ function routes(app) {
     app.post('/products',ProductController.addProduct)
     app.put('/products',ProductController.editProduct)
     app.delete('/products',ProductController.deleteProduct)
+
+
     app.post('/orders',OrderController.addOrder)
+    app.get('/orders',OrderController.getAllOrders)
 }
 
 module.exports = routes

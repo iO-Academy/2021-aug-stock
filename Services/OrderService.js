@@ -1,3 +1,7 @@
+
+
+
+
 const ProductValidationService = require('./ProductValidationService')
 const validator = require('validator')
 
@@ -76,6 +80,15 @@ const OrderService = {
         let stockQuantity = await connection.query("SELECT `stockQuantity` FROM `products` WHERE `sku` = '" + productSku + "';")
         let newStockQuantity = parseInt(stockQuantity[0].stockQuantity) - parseInt(orderQuantity)
         await connection.query("UPDATE `products` SET `stockQuantity` = '" + parseInt(newStockQuantity) + "' WHERE `sku` = '" + productSku + "';")
+    },
+
+    getAllOrders: async (connection) => {
+        let result = await connection.query("SELECT `orders`.`orderId`, `customers`.`customerEmail`, `products`.`productName`, `customers-orders`.`shippingAddress`, `customers-orders`.`ShippingPostcode`" +
+            "FROM `orders`" +
+            "INNER JOIN `customers-orders` ON `orders`.`orderId` = `customers-orders`.`orderId`" +
+            "INNER JOIN `customers` ON `customers-orders`.`customerId` = `customers`.`customerId`" +
+            "INNER JOIN `products` ON `orders`.`productSku` = `products`.`sku` WHERE `deleted` = 0;")
+        return result
     }
 }
 // then, for each record, check productQuantity against stockQuantity

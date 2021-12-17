@@ -45,6 +45,12 @@ const OrderController = {
             await OrderService.linkOrderToCustomer(connection, orderId, customerId, shippingData.shippingAddress, shippingData.shippingPostcode)
             res.json(JsonResService(true, 'Successfully added order', 200, result))
         }
+    },
+
+    getAllOrders: async (req, res) => {
+        let connection = await dbConnection()
+        let result = await OrderService.getAllOrders(connection)
+        res.json(JsonResService(true, 'successfully retrieved all order data', 200, result))
     }
 }
 

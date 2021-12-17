@@ -89,8 +89,7 @@ Returns JSON data on all products in DB
             { 'id': 3, 'productName': 'Liver - Human', 'price': 550000, 'stockQuantity': 50, 'sku': 'LIV-3' }
         ]
   }
-   ``` 
-  
+   ```
 
 - ##### Sample Call
   ```
@@ -128,7 +127,7 @@ Returns JSON data for one product in DB
         ]
   }
    ``` 
-  
+
 - ##### Error Response
   ```
   {
@@ -170,7 +169,7 @@ Returns JSON data for one product in DB
 
 - ##### Data Params
   e.g. `{ 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-1' }`
-  
+
   ##### Required fields:
   - 'productName': The name of product (maximum string of 50 characters)
   - 'price': Price of product in £ (maximum float of (13,2) digits)
@@ -186,7 +185,7 @@ Returns JSON data for one product in DB
   'data': []
   }
    ``` 
-  
+
 - ##### Error Response
   ```
   {
@@ -221,29 +220,29 @@ Returns JSON data for one product in DB
       console.log(data)
   })
   ```
-  
-  #### Edit A Product
-  
+
+#### Edit A Product
+
 - ##### URL
   '/products'
-  
+
 - ##### Method
   `PUT`
-  
+
 - ##### URL Params
   ##### Required:
   None
-  
+
 - ##### Data Params
   ##### Editing 1 field:
   e.g. `{ 'sku': 'NUC-1', 'productName': 'Nuclear Warhead - Pimped Out' }`
   ##### Editing multiple fields:
   e.g. `{ 'sku': 'NUC-1', 'productName': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stockQuantity': 100 }`
-  
+
   - 'productName': The name of product (maximum string of 50 characters)
   - 'price': Price of product in £ (maximum float of (13,2) digits)
   - 'stockQuantity': Available stock in units (MySQL smallint: maximum value of 65,535)
-  
+
   - ##### Required fields:
   - 'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-BATS91RD6KX7REHS5`
   
@@ -256,7 +255,7 @@ Returns JSON data for one product in DB
   'data': []
   }
    ``` 
-  
+
 - ##### Error Response
   ```
   {
@@ -275,7 +274,7 @@ Returns JSON data for one product in DB
   'data': []
   }
   ```
-  
+
 - ##### Sample Call
   ```
   fetch('/products',
@@ -291,22 +290,22 @@ Returns JSON data for one product in DB
       console.log(data)
   })
   ```
-  
+
 #### Delete A Product
-  
+
 - ##### URL
   '/products'
-  
+
 - ##### Method
   `DELETE`
-  
+
 - ##### URL Params
   ##### Required:
   None
-  
+
 - ##### Data Params
   e.g. `{ 'sku': 'NUC-BATS91RD6KX7REHS5' }`
-  
+
 - ##### Success Response
   ```
   {
@@ -316,7 +315,7 @@ Returns JSON data for one product in DB
   'data': []
   }
    ``` 
-  
+
 - ##### Error Response
   ```
   {
@@ -335,7 +334,7 @@ Returns JSON data for one product in DB
   'data': []
   }
   ```
-  
+
 - ##### Sample Call
   ```
   fetch('/products',
@@ -427,7 +426,7 @@ Returns JSON data on all orders in DB
 
   ##### Required fields:
   - 'customerEmail': string, maximum 255 characters
-  - 'shippingAddress': string, maximum 255 characters 
+  - 'shippingAddress': string, maximum 255 characters
   - 'shippingPostcode': string, maximum 10 characters
   - 'productData': [{'productSku': string, maximum 30 characters, 'productQuantity': smallint}]
 
