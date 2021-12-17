@@ -1,4 +1,5 @@
-const ProductController = require ('../Controllers/ProductController')
+const ProductController = require('../Controllers/ProductController')
+const OrderController = require('../Controllers/OrderController')
 
 function routes(app) {
     app.get('/products',ProductController.getAllProducts)
@@ -7,6 +8,8 @@ function routes(app) {
     app.put('/products',ProductController.editProduct)
     app.delete('/products',ProductController.deleteProduct)
 
+
+    app.post('/orders',OrderController.addOrder)
     app.get('/orders',OrderController.getAllOrders)
 }
 

@@ -10,7 +10,6 @@ let ProductController = {
         let result = await ProductService.getAllProducts(connection)
         res.json(JsonResService(true, 'successfully retrieved all product data', 200, result))
     },
-
     getSingleProduct: async (req, res) => {
         let sku = req.params.sku
         if (validateProduct.validateSku(sku)) {
@@ -25,7 +24,6 @@ let ProductController = {
             res.json(JsonResService(false,  'error: invalid SKU - no product retrieved from database', 400, []))
         }
     },
-
     addProduct: async (req, res) => {
         let productToAdd = {
             productName: req.body.productName,
@@ -43,7 +41,6 @@ let ProductController = {
             res.json(JsonResService(false,  'error: invalid input - no product added to database', 400, []))
         }
     },
-
     editProduct: async (req, res) => {
         let productToEdit = {
             productName: req.body.productName,
@@ -89,7 +86,6 @@ let ProductController = {
             res.json(JsonResService(false,  'error: invalid SKU - no product edited in database', 400, []))
         }
     },
-
     deleteProduct: async (req, res) => {
         let sku = req.body.sku
         if (validateProduct.validateSku(sku)) {
