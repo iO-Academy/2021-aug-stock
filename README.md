@@ -84,9 +84,9 @@ Returns JSON data on all products in DB
   'message': 'successfully retrieved all product data',
   'status': 200,
   data: [
-            { 'id': 1, 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-1' },
-            { 'id': 2, 'productName': 'Druggy Bag Surprise', 'price': 1000.00, 'stockQuantity': 50, 'sku': 'DRU-2' },
-            { 'id': 3, 'productName': 'Liver - Human', 'price': 550000, 'stockQuantity': 50, 'sku': 'LIV-3' }
+            { 'id': 1, 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-BATS91RD6KX7REHS5' },
+            { 'id': 2, 'productName': 'Druggy Bag Surprise', 'price': 1000.00, 'stockQuantity': 50, 'sku': 'DRU-BATS91RD6KX7RFFJF' },
+            { 'id': 3, 'productName': 'Liver - Human', 'price': 550000, 'stockQuantity': 50, 'sku': 'LIV-BATS91RD6KX7RFNI3' }
         ]
   }
    ```
@@ -123,7 +123,7 @@ Returns JSON data for one product in DB
   'message': 'successfully retrieved product data',
   'status': 200,
   data: [
-            { 'id': 1, 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-1', 'deleted': 0}
+            { 'id': 1, 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-BATS91RD6KX7REHS5', 'deleted': 0}
         ]
   }
    ``` 
@@ -168,13 +168,12 @@ Returns JSON data for one product in DB
   None
 
 - ##### Data Params
-  e.g. `{ 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50, 'sku': 'NUC-1' }`
+  e.g. `{ 'productName': 'Nuclear Warhead', 'price': 1000000000.00, 'stockQuantity': 50 }`
 
   ##### Required fields:
   - 'productName': The name of product (maximum string of 50 characters)
   - 'price': Price of product in £ (maximum float of (13,2) digits)
   - 'stockQuantity': Available stock in units (MySQL smallint: maximum value of 65,535)
-  - 'sku': Stock Keeping Unit - unique ID for the product. Should follow company guidelines e.g. `NUC-1`
 
 - ##### Success Response
   ```
@@ -235,9 +234,9 @@ Returns JSON data for one product in DB
 
 - ##### Data Params
   ##### Editing 1 field:
-  e.g. `{ 'sku': 'NUC-1', 'productName': 'Nuclear Warhead - Pimped Out' }`
+  e.g. `{ 'sku': 'NUC-BATS91RD6KX7REHS5', 'productName': 'Nuclear Warhead - Pimped Out' }`
   ##### Editing multiple fields:
-  e.g. `{ 'sku': 'NUC-1', 'productName': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stockQuantity': 100 }`
+  e.g. `{ 'sku': 'NUC-BATS91RD6KX7REHS5', 'productName': 'Nuclear Warhead - Pimped Out', 'price': 2000000000, 'stockQuantity': 100 }`
 
   - 'productName': The name of product (maximum string of 50 characters)
   - 'price': Price of product in £ (maximum float of (13,2) digits)
